@@ -228,6 +228,17 @@ header .topline .topline-wrap .header-menu li .donate {
   -webkit-transition: transform 0.23333333s, box-shadow 0.23333333s ease-in-out;
   -moz-transition: transform 0.23333333s, box-shadow 0.23333333s ease-in-out;
 }
+header .topline .topline-wrap .header-menu li .discord {
+  background: url(../images/svg/discord.svg) no-repeat;
+  width: 24px;
+  height: 24px;
+  background-size: 100% 100%;
+  margin-right: 5px;
+
+  transition: transform 0.23333333s, box-shadow 0.23333333s easy-in-out;
+  -webkit-transition: transform 0.23333333s, box-shadow 0.23333333s ease-in-out;
+  -moz-transition: transform 0.23333333s, box-shadow 0.23333333s ease-in-out;
+}
 header .info-server {
   -webkit-transform: skewY(-4deg);
   transform: skewY(-4deg);
@@ -238,11 +249,11 @@ header .info-server {
   /* margin-top: 160px; */
   position: absolute;
   right: 17px;
-  top: 160px;
+  top: 100px;
   text-shadow: 0px 11px 133px rgba(255, 255, 255, 0.68);
 }
 header .info-server p {
-  line-height: 0.8;
+  line-height: 1.05;
   font-size: 120px;
   color: #fff;
   letter-spacing: -3px;
@@ -532,7 +543,7 @@ main .game-servers .server.two:before {
   content: "";
   width: 4.485vw;
   height: 100%;
-  background: #2a2f37 url(../images/svg/various-files.svg) no-repeat;
+  background: #2a2f37 url(../images/svg/play.svg) no-repeat;
   background-size: 1.333vw 1.636vw;
   background-position: center;
   position: absolute;
@@ -795,20 +806,21 @@ main .how-start-game .guide-staps .stap-3:before {
   transform: skewY(-4deg);
   top: -12.424vw;
 }
+
 main .how-start-game .guide-staps .stap-4 {
   background: url(../images/guide-stap-4.png) no-repeat;
   background-size: cover;
-  margin-top: -0.061vw;
+  margin-top: 3.152vw;
 }
-main .how-start-game .guide-staps .stap-4:after {
+main .how-start-game .guide-staps .stap-4:before {
   content: "";
   background: -webkit-linear-gradient(
-    top,
+    bottom,
     rgba(115, 229, 186, 0.64) 0%,
     rgba(0, 212, 255, 0) 90%
   );
   background: linear-gradient(
-    180deg,
+    0deg,
     rgba(115, 229, 186, 0.64) 0%,
     rgba(0, 212, 255, 0) 90%
   );
@@ -817,19 +829,28 @@ main .how-start-game .guide-staps .stap-4:after {
   position: absolute;
   -webkit-transform: skewY(-4deg);
   transform: skewY(-4deg);
-  bottom: -12.424vw;
+  top: -12.424vw;
 }
-main .how-start-game .guide-staps .stap-4:before {
+main .how-start-game .guide-staps .stap-4:after {
   content: "";
-  background: url(../images/grand-cap.png);
-  width: 13.091vw;
-  height: 7.515vw;
-  background-size: contain;
+  background: -webkit-linear-gradient(
+    top,
+    rgba(255, 222, 42, 0.4) 0%,
+    rgba(0, 212, 255, 0) 90%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(255, 222, 42, 0.4) 0%,
+    rgba(0, 212, 255, 0) 90%
+  );
+  width: 100%;
+  height: 13.03vw;
   position: absolute;
-  bottom: -5.455vw;
-  left: 0.909vw;
-  z-index: 1;
+  -webkit-transform: skewY(-4deg);
+  transform: skewY(-4deg);
+  bottom: -15.394vw;
 }
+
 .main-button.guide {
   -webkit-transform: skewY(-4deg);
   transform: skewY(-4deg);
@@ -874,11 +895,15 @@ main .how-start-game .guide-staps .stap-4:before {
   background-size: 1.697vw 1.758vw;
 }
 .main-button.guide.ragemp:before {
-  background: #2a2f37 url(../images/ragemp.png) center no-repeat;
+  background: #2a2f37 url(../images/fivem.png) center no-repeat;
   background-size: 1.697vw 1.758vw;
 }
 .main-button.guide.grp:before {
   background: #2a2f37 url(../images/grp.png) center no-repeat;
+  background-size: 1.697vw 1.758vw;
+}
+.main-button.guide.play:before {
+  background: #2a2f37 url(../images/svg/play2.svg) center no-repeat;
   background-size: 1.697vw 1.758vw;
 }
 footer {
@@ -921,7 +946,7 @@ footer .social-links .link.public {
 }
 footer .social-links .link.public p:before {
   content: "";
-  background: url(../images/svg/VK_Blue_Logo.svg);
+  background: url(../images/svg/facebook.svg);
   width: 6.061vw;
   height: 6.061vw;
   background-size: cover;
@@ -1166,7 +1191,7 @@ header .topline .topline-wrap .header-menu li:hover .youtube {
   align-items: center;
 }
 .modal-window .modal-box .modal-box-header span {
-  font-family: akrobatl;
+  font-family: "Akrobat";
   font-weight: 400;
   font-size: 3vh;
   letter-spacing: 0px;
