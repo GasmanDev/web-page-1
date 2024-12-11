@@ -10,7 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link href="css/animate.min.css" rel="stylesheet" />
   <link href="css/reset.css" rel="stylesheet" />
-  <link href="css/style.css?time=1" rel="stylesheet" />
+  <link href="css/style.css?time=2" rel="stylesheet" />
   <link href="css/responsive.v3.css" rel="stylesheet" />
 
 
@@ -30,9 +30,9 @@
   <div class="modal-window successDonate" id="successDonate">
     <div class="modal-box no-bg">
       <p class="modal-box-header">
-        THÀNH CÔNG<br />
-        <span>nạp tiền vào tài khoản của bạn!</span>
-        <span class="modal-small-header">Nhấp vào nút "Kiểm tra giao dịch"
+        QUÉT MÃ QR ĐỂ THANH TOÁN<br />
+        <img id="qr_donate" style="margin-bottom: 15px">
+        <span class="modal-small-header">Sau khi thanh toán thành công. Nhấp vào nút "Kiểm tra giao dịch"
           tại cửa hàng nếu bạn đang trong
           trò chơi.
         </span>
@@ -97,19 +97,19 @@
       <form method="post" id="donateForm">
         <p class="modal-box-header">Nạp Coin<span>vào tài khoản</span></p>
         <div class="modal-box-content">
-          <div class="modal-box-input">
+          <!-- <div class="modal-box-input">
             <div class="modal-box-change-server">
               <p>CHỌN MÁY CHỦ</p>
               <div>
                 <input class="radio-server" name="server" type="radio" value="one_donate" id="one_donate" />
                 <label for="one_donate"><img src="images/svg/one1.svg" /></label>
-                <!-- <input class="radio-server" name="server" type="radio" value="two_donate" id="two_donate" />
-                <label for="two_donate"><img src="images/svg/two1.svg" /></label> -->
+                <input class="radio-server" name="server" type="radio" value="two_donate" id="two_donate" />
+                <label for="two_donate"><img src="images/svg/two1.svg" /></label>
               </div>
             </div>
-          </div>
+          </div> -->
           <input type="text" class="modal-box-input" placeholder="ID NHÂN VẬT" name="donate_id" required />
-          <input type="text" class="modal-box-input" placeholder="SỐ TIỀN VND (1 COIN = 10K VND)" name="donate_value"
+          <input type="text" class="modal-box-input" placeholder="SỐ COIN MUỐN NẠP (1 COIN = 10K VND)" name="donate_value"
             required />
         </div>
         <div class="modal-box-buttons">
@@ -347,7 +347,7 @@
         }
       });
       $('#donateForm').ajaxForm({
-        url: '/donatePost',
+        url: 'process_donate.php',
         dataType: 'text',
         success: function(data) {
           data = $.parseJSON(data);
@@ -356,7 +356,8 @@
               swal("Lỗi" ,  data.message ,  "error");
               break;
             case 'success':
-              location.href = data.redirect;
+              $('#qr_donate').attr('src', data.qr);
+              location.href = '/#successDonate';
               break;
           }
         },
