@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="modal-window successDonate" id="successDonate">
-    <div class="modal-box no-bg">
+    <div class="modal-box no-bg" style="transform: skewY(0deg)">
       <p class="modal-box-header">
         QUÉT MÃ QR ĐỂ THANH TOÁN<br />
         <img id="qr_donate" style="margin-bottom: 15px">
