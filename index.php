@@ -95,7 +95,7 @@
     <div class="modal-box">
       <a href="#" class="modal-box-close"></a>
       <form method="post" id="donateForm">
-        <p class="modal-box-header">Nạp Coin<span>vào tài khoản</span></p>
+        <p class="modal-box-header">Nạp Coin<span>1 COIN = 10.000 VND</span></p>
         <div class="modal-box-content">
           <!-- <div class="modal-box-input">
             <div class="modal-box-change-server">
@@ -109,7 +109,7 @@
             </div>
           </div> -->
           <input type="text" class="modal-box-input" placeholder="ID NHÂN VẬT" name="donate_id" required />
-          <input type="text" class="modal-box-input" placeholder="SỐ COIN MUỐN NẠP (1 COIN = 10K VND)" name="donate_value"
+          <input type="text" class="modal-box-input" placeholder="SỐ COIN MUỐN NẠP" name="donate_value"
             required />
         </div>
         <div class="modal-box-buttons">
