@@ -11,6 +11,6 @@
     $amount_vnd = $donate_value * 10000;
 
 
-    $linkQR = 'https://qr.sepay.vn/img?acc=96247CJ&bank=Bidv&amount=' . $amount_vnd . '&des=PS' . $donate_id;
+    $linkQR = 'https://qr.sepay.vn/img?acc=96247POSIE&bank=Bidv&amount=' . $amount_vnd . '&des=PS' . $donate_id;
     echo json_encode(['status' => 'success', 'qr' => $linkQR]);
 ?>
