@@ -2,7 +2,7 @@
 <html lang="ru-RU">
 
 <head>
-  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcDX5IqAAAAADteXLTgepRdtN3Fna4HRxz5FTX1"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <meta charset="UTF-8" />
   <title>POSIE CITY ROLE PLAY</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -10,7 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link href="css/animate.min.css" rel="stylesheet" />
   <link href="css/reset.css" rel="stylesheet" />
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/style.css?time=1" rel="stylesheet" />
   <link href="css/responsive.v3.css" rel="stylesheet" />
 
 
@@ -63,24 +63,25 @@
       </p>
       <form method="post" id="registrationForm">
         <div class="modal-box-content">
-          <div class="modal-box-input">
+          <!-- <div class="modal-box-input">
             <div class="modal-box-change-server">
               <p>Chọn máy chủ</p>
               <div>
                 <input class="radio-server" name="server" type="radio" value="one_reg" id="one_reg" />
                 <label for="one_reg"><img src="images/svg/one1.svg" /></label>
-                <!-- <input class="radio-server" name="server" type="radio" value="two_reg" id="two_reg" />
-                <label for="two_reg"><img src="images/svg/two1.svg" /></label> -->
+                <input class="radio-server" name="server" type="radio" value="two_reg" id="two_reg" />
+                <label for="two_reg"><img src="images/svg/two1.svg" /></label>
               </div>
             </div>
-          </div>
-          <input type="text" class="modal-box-input" placeholder="Họ nhân vật" name="lastname" required />
-          <input type="text" class="modal-box-input" placeholder="Tên nhân vật" name="firstname" required />
+          </div> -->
+          <input type="text" class="modal-box-input" placeholder="Tên nhân vật (Ví dụ: Long)" name="firstName" required />
+          <input type="text" class="modal-box-input" placeholder="Họ nhân vật (Ví dụ: Nguyễn)" name="lastName" required />
           <input type="email" class="modal-box-input" placeholder="Email đăng nhập" name="email" required />
           <input type="text" class="modal-box-input" placeholder="Mật khẩu" name="password" required />
-          <input type="text" class="modal-box-input" placeholder="Xác nhận mật khẩu" name="repeatpassword" required />
+          <input type="text" class="modal-box-input" placeholder="Xác nhận mật khẩu" name="repeatPassword" required />
+          <input type="text" class="modal-box-input" placeholder="Mã giới thiệu (nếu có)" name="refCode" />
           <label for="username" name="captcha" required></label>
-          <div align="center" class="g-recaptcha" data-sitekey="6LcDX5IqAAAAADteXLTgepRdtN3Fna4HRxz5FTX1"></div>
+          <div class="g-recaptcha" data-sitekey="6LdKT5gqAAAAAOXNsc56ywIKg6ceav2FfgkK_bAN"></div>
         </div>
         <div class="modal-box-buttons">
           <button class="button-modal-box" type="submit">
@@ -309,30 +310,41 @@
       </div>
     </div>
   </footer>
-  <script src="js/jquery.min.js" type="21833cd4605552c7be117641-text/javascript"></script>
-  <script src="js/jquery.form.js" type="21833cd4605552c7be117641-text/javascript"></script>
-  <script src="js/clipboard.min.js" type="21833cd4605552c7be117641-text/javascript"></script>
-  <script src="js/script.js" type="21833cd4605552c7be117641-text/javascript"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/jquery.form.js" type="text/javascript"></script>
+  <script src="js/clipboard.min.js" type="text/javascript"></script>
+  <script src="js/script.js" type="text/javascript"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"
-    type="21833cd4605552c7be117641-text/javascript"></script>
-  <script type="21833cd4605552c7be117641-text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
-  <script src="js/push.js" type="21833cd4605552c7be117641-text/javascript"></script>
-  <script type="21833cd4605552c7be117641-text/javascript">
-      $('#registrationForm').ajaxForm({
-        url: '/registrationPost',
-        dataType: 'text',
-        success: function(data) {
-          data = $.parseJSON(data);
-          switch(data.status) {
-            case 'error':
-              swal("Ошибка" ,  data.message ,  "error");
-              grecaptcha.reset();
-              break;
-            case 'success':
-              location.href = '/#successRegistration';
-              break;
-          }
-        },
+    type="text/javascript"></script>
+  <script src="js/push.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+      $('#registrationForm').submit(function(e) {
+        e.preventDefault(); // Ngừng hành động mặc định của form
+
+        // Lấy token từ reCAPTCHA
+        var recaptchaResponse = grecaptcha.getResponse();
+
+        if (recaptchaResponse.length === 0) {
+          swal("Lỗi", "Vui lòng xác minh bạn không phải robot", "error");
+        } else {
+          // Gửi form nếu reCAPTCHA hợp lệ
+          $(this).ajaxSubmit({
+            url: 'process_reg.php',
+            dataType: 'json',
+            success: function(data) {
+              switch(data.status) {
+                case 'error':
+                  swal("Lỗi", data.message, "error");
+                  grecaptcha.reset(); // Reset reCAPTCHA nếu có lỗi
+                  break;
+                case 'success':
+                  location.href = '/#successRegistration';
+                  break;
+              }
+            }
+          });
+        }
       });
       $('#donateForm').ajaxForm({
         url: '/donatePost',
@@ -341,7 +353,7 @@
           data = $.parseJSON(data);
           switch(data.status) {
             case 'error':
-              swal("Ошибка" ,  data.message ,  "error");
+              swal("Lỗi" ,  data.message ,  "error");
               break;
             case 'success':
               location.href = data.redirect;
@@ -352,7 +364,7 @@
     </script>
 
   <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
-    data-cf-settings="21833cd4605552c7be117641-|49" defer=""></script>
+    data-cf-settings="|49" defer=""></script>
 </body>
 
 </html>

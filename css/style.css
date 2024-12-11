@@ -1253,6 +1253,7 @@ header .topline .topline-wrap .header-menu li:hover .youtube {
   padding-right: 3.2vh;
   margin-bottom: 1vh;
   background: #fff;
+  font-size: 22px;
 }
 .modal-window .modal-box .modal-box-input::placeholder {
   text-transform: uppercase;
